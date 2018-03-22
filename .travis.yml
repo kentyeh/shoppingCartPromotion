@@ -4,3 +4,7 @@ jdk:
   - oraclejdk8
 sudo: false
 script: mvn clean test
+repo_token: JwkT2nYxb8VNYihojThQmQ
+notifications:
+  email:
+    - kent.yeh2000@gmail.com

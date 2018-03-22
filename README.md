@@ -1,6 +1,6 @@
 # Shopping Cart Promotion Caculator #
 
-[![Build Status](https://travis-ci.org/kentyeh/scpc.svg?branch=master)](https://travis-ci.org/kentyeh/scpc)
+[![Build Status](https://travis-ci.org/kentyeh/shoppingCartPromotion.svg?branch=master)](https://travis-ci.org/kentyeh/shoppingCartPromotion)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.kentyeh/scpc/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.kentyeh/scpc)
 [![Javadocs](http://www.javadoc.io/badge/com.github.kentyeh/scpc.svg?color=blue)](http://www.javadoc.io/doc/com.github.kentyeh/scpc)
 [![Contributor](http://wsbadge.herokuapp.com/badge/Developer-Kent%20Yeh-oragnle.svg)](https://github.com/kentyeh)
