@@ -162,7 +162,7 @@ There is a promotion : **Buy 5+ get 2%,buy 10+ get 3% and buy more then 20+ get 
 
 triggerFormula | Bonus |quantityFormula 
 ----- |  --- | --- 
-N>4 | One Cent Discount | SCSPx(N>19?5:N>9?3:N>4?2:0) 
+N>4 | One Cent Discount | SCSPx(N>19?5:N>9?3:N>4?2:0)x10
 
 
 Single Item                 | Contains Count<br/>(N) | Sum Of SP<br/>(SCSP)| Decision 
@@ -225,21 +225,21 @@ There is a bundle-sale of stationery **"One stapler bundle with 2 liquid paper a
 
 First IChainRule: deal with stapler.
 
-triggerFormula | next rule
------ | ---
-true | deal with liquid paper
+triggerFormula | contains | next rule
+----- | --- | ---
+true | stapler | deal with liquid paper
 
 Second IChainRule: deal with liquid paper.
 
-triggerFormula | next rule
------ | ---
-N%2==0 | deal with pens
+triggerFormula | contains | next rule
+----- | --- | ---
+N%2==0 | liquid paper | deal with pens
 
 Last ILeafRule: deal with pens.
 
-triggerFormula | Bonus |quantityFormula 
------ | --- | --- 
-N%3==0 | One Cent Discount | (SCSP+PSCSP+PPSCSP)x10
+triggerFormula | contains | Bonus |quantityFormula 
+----- | --- | --- | --- 
+N%3==0 | All Pens | One Cent Discount | (SCSP+PSCSP+PPSCSP)x10
 
 There are two variables never see here.
 
