@@ -63,10 +63,10 @@ public abstract class EvalHelper<T> {
         if (item != null) {
             bindVarValue(String.format("%s", getVarSalePrice()), item.getSalePrice());
             bindVarValue(String.format("%s", getVarOriginalPrice()), item.getOriginalPrice());
-            bindVarValue(String.format("%s", getVarSerialNum()), item.getSerialNum());
         }
         if (rule != null) {
             bindVarValue(String.format("%s", getVarContainsCount()), rule.getContainsCount());
+            bindVarValue(String.format("%s", getVarSerialNum()), rule.getSerialNum());
             bindVarValue(String.format("%s", getVarSumOfContainsOriginalPrice()), rule.getSumOfContainsOriginalPrice().doubleValue());
             bindVarValue(String.format("%s", getVarSumOfContainsSalePrice()), rule.getSumOfContainsSalePrice().doubleValue());
             bindVarValue(String.format("%s", getVarSumOfSerialOriginalPrice()), rule.getSumOfSerialOriginalPrice().doubleValue());

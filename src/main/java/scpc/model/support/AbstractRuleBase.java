@@ -20,6 +20,7 @@ public abstract class AbstractRuleBase<T> implements IRule<T> {
     private static final Logger logger = LoggerFactory.getLogger(AbstractRuleBase.class);
 
     private int containsCount = 0;
+    private int serialNum = 1;
     private BigDecimal containsSumOfOriginalPrice = BigDecimal.ZERO;
     private BigDecimal containsSumOfSalePrice = BigDecimal.ZERO;
     private BigDecimal sumOfSerialOriginalPrice = BigDecimal.ZERO;
@@ -107,6 +108,30 @@ public abstract class AbstractRuleBase<T> implements IRule<T> {
     @Override
     public int getContainsCount() {
         return containsCount;
+    }
+
+    /**
+     * @see IRule#serialNumInc(boolean)
+     * @param doAdd
+     * @return
+     */
+    @Override
+    public IRule<T> serialNumInc(boolean doAdd) {
+        if (doAdd) {
+            serialNum++;
+        } else {
+            serialNum = 1;
+        }
+        return this;
+    }
+
+    /**
+     * @see IRule#getSerialNum()
+     * @return
+     */
+    @Override
+    public int getSerialNum() {
+        return serialNum;
     }
 
     /**

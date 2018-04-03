@@ -45,16 +45,16 @@ Purple Fabric Marker Pen    | $8.23  | $7.4   | x |2
 
 Shopping cart rearranges into single items( ordered by its price).
 
-Single Item                | serialNum | serialLast
-------------------------| ---: | ---
-Precision Compass           | 1 | true
-Stapler                     | 1 | true
-BrightPink Fabric Marker Pen| 1 | false
-BrightPink Fabric Marker Pen| 2 | true
-Purple Fabric Marker Pen    | 1 | false
-Purple Fabric Marker Pen    | 2 | true
-Liquid Paper                | 1 | false
-Liquid Paper                | 2 | true
+Single Item                | serialLast
+------------------------| ---
+Precision Compass           | true
+Stapler                     | true
+BrightPink Fabric Marker Pen| false
+BrightPink Fabric Marker Pen| true
+Purple Fabric Marker Pen    | false
+Purple Fabric Marker Pen    | true
+Liquid Paper                | false
+Liquid Paper                | true
 
 ### IRule ###
 Represent how promotion process.
@@ -64,12 +64,12 @@ IRule walks through all SingleItems, filters them, find triggered, collection st
 #### Filters Items ####
 Suppose we have a promotion rule for pens. Then we have to find out those contains items and collection statistics (the capital name in the parentheses represents the variable) when iterating.
 
-Single Item                 | Contains Count<br/>(N) | Original Price<br/>(OP)| Sale Price<br/>(SP) |serialNum<br/>(NN) | Sum Of OP<br/>(SCOP) | Sum Of SP<br/>(SCSP)| Sum of Serial OP<br/>(SSOP) | Sum of Serial SP<br/>(SSSP)
------------------------- | ---: | ---: | ---: | ---:  | ---:  | ---: | ---: | ---:
-BrightPink Fabric Marker Pen | 1 | $8.8  | $7.93 | 1 | $8.8   | $7.93  | $8.8   | $7.93
-BrightPink Fabric Marker Pen | 2 | $8.8  | $7.93 | 2 | $17.6  | $15.86 | $17.6  | $15.86
-Purple Fabric Marker Pen     | 3 | $8.23 | $7.4  | 1 | $25.83 | $23.26 | $8.23  | $7.4
-Purple Fabric Marker Pen     | 4 | $8.23 | $7.4  | 2 | $34.06 | $30.66 | $16.46 | $14.8
+Single Item                 | Contains Count<br/>(N) | serial Number<br/>(NN)| Original Price<br/>(OP)| Sale Price<br/>(SP) |serialNum<br/>(NN) | Sum Of OP<br/>(SCOP) | Sum Of SP<br/>(SCSP)| Sum of Serial OP<br/>(SSOP) | Sum of Serial SP<br/>(SSSP)
+------------------------ | ---: | ---: | ---: | ---: | ---:  | ---:  | ---: | ---: | ---:
+BrightPink Fabric Marker Pen | 1 | 1 | $8.8  | $7.93 | 1 | $8.8   | $7.93  | $8.8   | $7.93
+BrightPink Fabric Marker Pen | 2 | 2 | $8.8  | $7.93 | 2 | $17.6  | $15.86 | $17.6  | $15.86
+Purple Fabric Marker Pen     | 3 | 1 | $8.23 | $7.4  | 1 | $25.83 | $23.26 | $8.23  | $7.4
+Purple Fabric Marker Pen     | 4 | 2 | $8.23 | $7.4  | 2 | $34.06 | $30.66 | $16.46 | $14.8
 
 #### Item triggered to decide bonus ####
 Let's assume the above promotion is **buy two get free one offer**, It is evident that something triggered at **N%2==0**, and result in a bonus.
@@ -265,6 +265,6 @@ PPSCSP also same as PSCSP, it represents the SCSP of stapler rule.
 <dependency>
     <groupId>com.github.kentyeh</groupId>
     <artifactId>scpc</artifactId>
-    <version>1.0</version>
+    <version>1.1</version>
 </dependency>
 ```

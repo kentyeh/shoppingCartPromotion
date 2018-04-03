@@ -52,11 +52,11 @@ public class TestSerialNum extends TestBase {
         List<IRule<CartItem>> rules = new ArrayList();
         rules.add(new BaseRule("Buy two same pens get free one offer!", BaseRule.JS_EVAL, "NN%2==0", "1", 0,
                 WaterSolublePurpleFabricMarkerPen.CODE, WaterSolubleBrightPinkFabricMarkerPen.CODE) {
-            @Override
-            public IItem<CartItem> getBonus() {
-                return CurrentItem.getInstance();
-            }
-        });
+                    @Override
+                    public IItem<CartItem> getBonus() {
+                        return CurrentItem.getInstance();
+                    }
+                });
         Collection<BonusItem<CartItem>> bonuses = Calculator.calcBonus(rules, cartItems);
         List<CartItem> itemList = Calculator.purification(bonuses);
         assertThat("can't found purle pen free offer!", itemList, hasItem(purplePen));
@@ -83,11 +83,11 @@ public class TestSerialNum extends TestBase {
         List<IRule<CartItem>> rules = new ArrayList();
         rules.add(new BaseRule("Buy two same pens save 3 cents!", BaseRule.SPEL_EVAL, "NN%2==0", "3", 0,
                 WaterSolublePurpleFabricMarkerPen.CODE, WaterSolubleBrightPinkFabricMarkerPen.CODE) {
-            @Override
-            public IItem<CartItem> getBonus() {
-                return new OneCentDiscount();
-            }
-        });
+                    @Override
+                    public IItem<CartItem> getBonus() {
+                        return new OneCentDiscount();
+                    }
+                });
         Collection<BonusItem<CartItem>> bonuses = Calculator.calcBonus(rules, cartItems);
         List<CartItem> itemList = Calculator.purification(bonuses);
         assertThat("No saveing cents found.", itemList, hasItem(new OneCentDiscount()));
@@ -112,11 +112,11 @@ public class TestSerialNum extends TestBase {
             }
         }.setNext(new BaseRule("", BaseRule.SPEL_EVAL, "NN%2==0", "14", 0,
                 WaterSolublePurpleFabricMarkerPen.CODE, WaterSolubleBrightPinkFabricMarkerPen.CODE) {
-            @Override
-            public IItem<CartItem> getBonus() {
-                return new OneCentDiscount();
-            }
-        }));
+                    @Override
+                    public IItem<CartItem> getBonus() {
+                        return new OneCentDiscount();
+                    }
+                }));
         Collection<BonusItem<CartItem>> bonuses = Calculator.calcBonus(rules, cartItems);
         assertThat("Should save 28 cents", bonuses.iterator().next().getQuantity(), is(equalTo(28l)));
         if ("true".equalsIgnoreCase(showCart)) {
@@ -137,11 +137,11 @@ public class TestSerialNum extends TestBase {
         rules.add(new BaseRule("2 Same Pens Get OriPrice 30% discount!", BaseRule.SPEL_EVAL, "NN%2==0",
                 "(SP*10-OP*7)*2", 0,
                 WaterSolublePurpleFabricMarkerPen.CODE, WaterSolubleBrightPinkFabricMarkerPen.CODE) {
-            @Override
-            public IItem<CartItem> getBonus() {
-                return new OneCentDiscount();
-            }
-        });
+                    @Override
+                    public IItem<CartItem> getBonus() {
+                        return new OneCentDiscount();
+                    }
+                });
         Collection<BonusItem<CartItem>> bonuses = Calculator.calcBonus(rules, cartItems);
         long saving = Math.round(Math.floor(
                 (briPinkPen.getSalePrice() + purplePen.getSalePrice()) * 4 * 10
@@ -155,11 +155,11 @@ public class TestSerialNum extends TestBase {
         rules.add(new BaseRule("2nd Pen Get SalePrice 30% discount!", BaseRule.SPEL_EVAL, "NN%2==0",
                 "SP*2*3", 0,
                 WaterSolublePurpleFabricMarkerPen.CODE, WaterSolubleBrightPinkFabricMarkerPen.CODE) {
-            @Override
-            public IItem<CartItem> getBonus() {
-                return new OneCentDiscount();
-            }
-        });
+                    @Override
+                    public IItem<CartItem> getBonus() {
+                        return new OneCentDiscount();
+                    }
+                });
         bonuses = Calculator.calcBonus(rules, cartItems);
         saving = Math.round(Math.floor((briPinkPen.getSalePrice() + purplePen.getSalePrice()) * 4 * 3));
         assertThat(String.format("Should save %,d cents", saving),
@@ -185,17 +185,17 @@ public class TestSerialNum extends TestBase {
         List<IRule<CartItem>> rules = new ArrayList();
         rules.add(new BaseRule("$10↗ stationery bundle 2 Same Pens,2 same pens get 10% discount.", BaseRule.JS_EVAL, false, false,
                 "SP>=10", "", 0, Stapler.CODE, PrecisionCompass.CODE, LiquidPaper.CODE) {
-            @Override
-            public IItem<CartItem> getBonus() {
-                throw new UnsupportedOperationException("Not supported yet.");
-            }
-        }.setNext(new BaseRule("", BaseRule.SPEL_EVAL, "NN%2==0", "SSSP", 0,
-                WaterSolublePurpleFabricMarkerPen.CODE, WaterSolubleBrightPinkFabricMarkerPen.CODE) {
-            @Override
-            public IItem<CartItem> getBonus() {
-                return new OneCentDiscount();
-            }
-        }));
+                    @Override
+                    public IItem<CartItem> getBonus() {
+                        throw new UnsupportedOperationException("Not supported yet.");
+                    }
+                }.setNext(new BaseRule("", BaseRule.SPEL_EVAL, "NN%2==0", "SSSP", 0,
+                                WaterSolublePurpleFabricMarkerPen.CODE, WaterSolubleBrightPinkFabricMarkerPen.CODE) {
+                    @Override
+                    public IItem<CartItem> getBonus() {
+                        return new OneCentDiscount();
+                    }
+                }));
         Collection<BonusItem<CartItem>> bonuses = Calculator.calcBonus(rules, cartItems);
         long saving = Math.round(Math.floor(briPinkPen.getSalePrice() * 2 + purplePen.getSalePrice() * 2));
         assertThat(String.format("Should save %,d cents", saving),
@@ -218,12 +218,12 @@ public class TestSerialNum extends TestBase {
         List<IRule<CartItem>> rules = new ArrayList();
         rules.add(new BaseRule("Buy two same pens get free one offer!", BaseRule.JS_EVAL, "NN%2==0", "1", 0,
                 WaterSolublePurpleFabricMarkerPen.CODE, WaterSolubleBrightPinkFabricMarkerPen.CODE) {
-            @Override
-            public IItem<CartItem> getBonus() {
-                return CurrentItem.getInstance();
-            }
+                    @Override
+                    public IItem<CartItem> getBonus() {
+                        return CurrentItem.getInstance();
+                    }
 
-        });
+                });
         rules.add(new BaseRule("Buy two same staplers save 9 cents", BaseRule.SPEL_EVAL, "NN%2==0", "9", 1, Stapler.CODE) {
             @Override
             public IItem<CartItem> getBonus() {

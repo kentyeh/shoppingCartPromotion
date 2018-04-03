@@ -54,36 +54,10 @@ public class Calculator {
         List<SingleItem<T>> flats = new ArrayList<>();
         for (IItem item : items) {
             for (int i = 0; i < item.getQuantity(); i++) {
-                SingleItem si = new SingleItem(item, idx++, i + 1);
+                SingleItem si = new SingleItem(item, idx++);
                 si.setSerialLast(i == item.getQuantity() - 1);
                 flats.add(si);
             }
-        }
-        return flats;
-    }
-
-    private static <T> List<SingleItem<T>> rearrange(List<SingleItem<T>> items) {
-        SingleItem preSingle = null;
-        IItem preitem = null;
-        int serialNum = 1, sequenceNum = 1;
-        List<SingleItem<T>> flats = new ArrayList<>();
-        for (int i = 0; i < items.size(); i++) {
-            SingleItem curritem = items.get(i);
-            if (!curritem.isExclusiveLock()) {
-                if (preitem == null || !preitem.equals(curritem.getItem())) {
-                    preitem = curritem.getItem();
-                    serialNum = 1;
-                    if (preSingle != null) {
-                        preSingle.setSerialLast(true);
-                    }
-                }
-                curritem = new SingleItem(curritem.getItem(), sequenceNum++, serialNum++);
-                flats.add(curritem);
-                preSingle = curritem;
-            }
-        }
-        if (preSingle != null) {
-            preSingle.setSerialLast(true);
         }
         return flats;
     }
@@ -129,7 +103,6 @@ public class Calculator {
             IRule<T> rule = rules.get(i);
             logger.debug("[{}] is going to apply.", rule);
             if (iterate(rule, items, bonuses) && i != rules.size() - 1) {
-                items = rearrange(items);
             }
         }
         return bonuses.values();
@@ -152,13 +125,14 @@ public class Calculator {
         if (rule.isLeaf()) {
             ILeafRule<T> lrule = ((ILeafRule<T>) rule);
             int idx = 0;
+            IItem preitem = null;
             for (SingleItem<T> item : cartItems) {
                 if (!item.isExclusiveLock() && rule.contains(item)) {
                     BigDecimal op = BigDecimal.valueOf(item.getOriginalPrice()).setScale(rule.getPriceScale(), RoundingMode.HALF_EVEN);
                     BigDecimal sp = BigDecimal.valueOf(item.getSalePrice()).setScale(rule.getPriceScale(), RoundingMode.HALF_EVEN);
                     logger.debug("\t inspect [{}-{}].", ++idx, item);
                     lockedItems.add(item.setExclusiveLock(true));
-                    rule.containsCountInc().sumOfContainsOriginalPriceInc(op).sumOfContainsSalePriceInc(sp)
+                    rule.containsCountInc().serialNumInc(item.getItem().equals(preitem)).sumOfContainsOriginalPriceInc(op).sumOfContainsSalePriceInc(sp)
                             .sumOfSerialOriginalPriceInc(op).sumOfSerialSalePriceInc(sp);
                     if (rule.isTriggered(item)) {
                         double quantity = lrule.evalQuantity();
@@ -190,6 +164,9 @@ public class Calculator {
                     if (item.isSerialLast()) {
                         rule.resetSumOfSerialOriginalPrice();
                         rule.resetSumOfSerialSalePrice();
+                        preitem = null;
+                    } else {
+                        preitem = item.getItem();
                     }
                 }
             }

@@ -78,6 +78,20 @@ public interface IRule<T> {
     public int getContainsCount();
 
     /**
+     *
+     * @param doAdd true to add one to the serial number otherwise reset serial number to one.
+     * @return this rule
+     */
+    public IRule<T> serialNumInc(boolean doAdd);
+
+    /**
+     * 目前走訪商品之同品項物品的編號(從1起算)
+     *
+     * @return n'th item of same serial items current visited.(Starting from 1)
+     */
+    public int getSerialNum();
+
+    /**
      * Increase the summary sale price of applicable items.
      * <br>增加符合此規則的品項售價小計
      *

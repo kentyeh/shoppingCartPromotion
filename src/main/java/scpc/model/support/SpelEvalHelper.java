@@ -124,34 +124,34 @@ public abstract class SpelEvalHelper<T> extends EvalHelper<T> {
             if (null != replacers.put(varname, "rule.containsCount")) {
                 throw new ScriptException(String.format(" 8.Variable[%s] already set!", varname));
             }
+            varname = validJSVarName(getVarSerialNum());
+            if (null != replacers.put(varname, "rule.serialNum")) {
+                throw new ScriptException(String.format(" 9.Variable[%s] already set!", varname));
+            }
             varname = validJSVarName(getVarSumOfContainsOriginalPrice());
             if (null != replacers.put(varname, "rule.sumOfContainsOriginalPrice")) {
-                throw new ScriptException(String.format(" 9.Variable[%s] already set!", varname));
+                throw new ScriptException(String.format("10.Variable[%s] already set!", varname));
             }
             varname = validJSVarName(getVarSumOfContainsSalePrice());
             if (null != replacers.put(varname, "rule.sumOfContainsSalePrice")) {
-                throw new ScriptException(String.format("10.Variable[%s] already set!", varname));
+                throw new ScriptException(String.format("11.Variable[%s] already set!", varname));
             }
             varname = validJSVarName(getVarSumOfSerialOriginalPrice());
             if (null != replacers.put(varname, "rule.sumOfSerialOriginalPrice")) {
-                throw new ScriptException(String.format("11,Variable[%s] already set!", varname));
+                throw new ScriptException(String.format("12,Variable[%s] already set!", varname));
             }
             varname = validJSVarName(getVarSumOfSerialSalePrice());
             if (null != replacers.put(varname, "rule.sumOfSerialSalePrice")) {
-                throw new ScriptException(String.format("12.Variable[%s] already set!", varname));
+                throw new ScriptException(String.format("13.Variable[%s] already set!", varname));
             }
         }
         if (bindItem != null) {
             String varname = validJSVarName(getVarSalePrice());
             if (null != replacers.put(varname, "item.salePrice")) {
-                throw new ScriptException(String.format("13.Variable[%s] already set!", varname));
+                throw new ScriptException(String.format("14.Variable[%s] already set!", varname));
             }
             varname = validJSVarName(getVarOriginalPrice());
             if (null != replacers.put(varname, "item.originalPrice")) {
-                throw new ScriptException(String.format("14.Variable[%s] already set!", varname));
-            }
-            varname = validJSVarName(getVarSerialNum());
-            if (null != replacers.put(varname, "item.serialNum")) {
                 throw new ScriptException(String.format("15.Variable[%s] already set!", varname));
             }
         }

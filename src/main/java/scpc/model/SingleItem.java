@@ -15,14 +15,12 @@ public class SingleItem<T> implements IItem<T> {
 
     private final IItem<T> item;
     private final int sequenceNum;
-    private final int serialNum;
     private boolean serialLast = false;
     private boolean exclusiveLock = false;
 
-    public SingleItem(IItem<T> item, int sequenceNum, int serialNum) {
+    public SingleItem(IItem<T> item, int sequenceNum) {
         this.item = item;
         this.sequenceNum = sequenceNum;
-        this.serialNum = serialNum;
     }
 
     /**
@@ -95,15 +93,6 @@ public class SingleItem<T> implements IItem<T> {
      */
     public int getSequenceNum() {
         return sequenceNum;
-    }
-
-    /**
-     * 同品項物品的編號(從1起算)
-     *
-     * @return n'th item of same serial items.(Starting from 1)
-     */
-    public int getSerialNum() {
-        return serialNum;
     }
 
     /**
