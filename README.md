@@ -268,3 +268,5 @@ PPSCSP also same as PSCSP, it represents the SCSP of stapler rule.
     <version>1.1</version>
 </dependency>
 ```
+
+Execute ```mvn test``` to see how it works!
