@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.expression.EvaluationContext;
 import org.springframework.expression.Expression;
+import org.springframework.expression.spel.SpelCompilerMode;
 import org.springframework.expression.spel.SpelParserConfiguration;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.expression.spel.support.StandardEvaluationContext;
@@ -28,7 +29,7 @@ public abstract class SpelEvalHelper<T> extends EvalHelper<T> {
     private static final Logger logger = LoggerFactory.getLogger(SpelEvalHelper.class);
 
     private static final EvaluationContext context = new StandardEvaluationContext();
-    private static final SpelExpressionParser sep = new SpelExpressionParser(new SpelParserConfiguration(true, true));
+    private static final SpelExpressionParser sep = new SpelExpressionParser(new SpelParserConfiguration(SpelCompilerMode.IMMEDIATE, SpelEvalHelper.class.getClassLoader(), false, true, Integer.MAX_VALUE));
     private static final Pattern escapePtn = Pattern.compile("[\\\\\\^\\$\\.\\|\\?\\*\\+\\(\\)\\[\\{]");
     private BindHolder binder = null;
     private IRule<T> bindRule = null;
