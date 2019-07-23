@@ -75,7 +75,7 @@ public abstract class BaseRule extends AbstractRuleBase<CartItem> implements ILe
 
     @Override
     public IItem<CartItem> getCurrentAsBonus(IItem<CartItem> item) {
-        return new CartItem(item.as().getProductId(), item.as().getProductDesc(), item.as().getOriginalPrice(), 0);
+        return new CartItem(item.as().getProductId(), item.as().getProductDesc(), item.as().getRegularPrice(), 0);
     }
 
     @Override

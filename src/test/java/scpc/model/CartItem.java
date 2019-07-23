@@ -16,14 +16,14 @@ public class CartItem implements IItem<CartItem>, Serializable {
 
     private String productId;
     private String productDesc;
-    private double originalPrice;
+    private double regularPrice;
     private double salePrice;
     private long quantity = 0;
 
-    public CartItem(String productId, String productDesc, double originalPrice, double salePrice) {
+    public CartItem(String productId, String productDesc, double regularPrice, double salePrice) {
         this.productId = productId;
         this.productDesc = productDesc;
-        this.originalPrice = originalPrice;
+        this.regularPrice = regularPrice;
         this.salePrice = salePrice;
     }
 
@@ -54,12 +54,12 @@ public class CartItem implements IItem<CartItem>, Serializable {
     }
 
     @Override
-    public double getOriginalPrice() {
-        return originalPrice;
+    public double getRegularPrice() {
+        return regularPrice;
     }
 
-    public void setOriginalPrice(double originalPrice) {
-        this.originalPrice = originalPrice;
+    public void setRegularPrice(double regularPrice) {
+        this.regularPrice = regularPrice;
     }
 
     @Override
@@ -120,8 +120,8 @@ public class CartItem implements IItem<CartItem>, Serializable {
     public String toString() {
         NumberFormat nf = new DecimalFormat("'$'#,###.00");
         return String.format("[%s]%s %s  × %d",
-                productId, productDesc, originalPrice == salePrice ? nf.format(salePrice)
-                        : nf.format(originalPrice) + " ↘" + nf.format(salePrice),
+                productId, productDesc, regularPrice == salePrice ? nf.format(salePrice)
+                        : nf.format(regularPrice) + " ↘" + nf.format(salePrice),
                 quantity);
     }
 

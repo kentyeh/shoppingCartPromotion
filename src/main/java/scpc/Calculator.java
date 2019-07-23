@@ -46,8 +46,8 @@ public class Calculator {
             public int compare(IItem o1, IItem o2) {
                 return o1.getSalePrice() < o2.getSalePrice() ? 1
                         : o1.getSalePrice() == o2.getSalePrice()
-                                ? o1.getOriginalPrice() < o2.getOriginalPrice() ? 1
-                                        : o1.getOriginalPrice() == o2.getOriginalPrice() ? 0 : -1 : -1;
+                                ? o1.getRegularPrice() < o2.getRegularPrice() ? 1
+                                        : o1.getRegularPrice() == o2.getRegularPrice() ? 0 : -1 : -1;
             }
         });
         int idx = 1;
@@ -128,12 +128,12 @@ public class Calculator {
             IItem preitem = null;
             for (SingleItem<T> item : cartItems) {
                 if (!item.isExclusiveLock() && rule.contains(item)) {
-                    BigDecimal op = BigDecimal.valueOf(item.getOriginalPrice()).setScale(rule.getPriceScale(), RoundingMode.HALF_EVEN);
+                    BigDecimal op = BigDecimal.valueOf(item.getRegularPrice()).setScale(rule.getPriceScale(), RoundingMode.HALF_EVEN);
                     BigDecimal sp = BigDecimal.valueOf(item.getSalePrice()).setScale(rule.getPriceScale(), RoundingMode.HALF_EVEN);
                     logger.debug("\t inspect [{}-{}].", ++idx, item);
                     lockedItems.add(item.setExclusiveLock(true));
-                    rule.containsCountInc().serialNumInc(item.getItem().equals(preitem)).sumOfContainsOriginalPriceInc(op).sumOfContainsSalePriceInc(sp)
-                            .sumOfSerialOriginalPriceInc(op).sumOfSerialSalePriceInc(sp);
+                    rule.containsCountInc().serialNumInc(item.getItem().equals(preitem)).sumOfContainsRegularPriceInc(op).sumOfContainsSalePriceInc(sp)
+                            .sumOfSerialRegularPriceInc(op).sumOfSerialSalePriceInc(sp);
                     if (rule.isTriggered(item)) {
                         double quantity = lrule.evalQuantity();
                         if (quantity > 0) {
@@ -162,7 +162,7 @@ public class Calculator {
                         }
                     }
                     if (item.isSerialLast()) {
-                        rule.resetSumOfSerialOriginalPrice();
+                        rule.resetSumOfSerialRegularPrice();
                         rule.resetSumOfSerialSalePrice();
                         preitem = null;
                     } else {
@@ -174,12 +174,12 @@ public class Calculator {
             int idx = 0;
             for (SingleItem<T> item : cartItems) {
                 if (!item.isExclusiveLock() && rule.contains(item)) {
-                    BigDecimal op = BigDecimal.valueOf(item.getOriginalPrice()).setScale(rule.getPriceScale(), RoundingMode.HALF_EVEN);
+                    BigDecimal op = BigDecimal.valueOf(item.getRegularPrice()).setScale(rule.getPriceScale(), RoundingMode.HALF_EVEN);
                     BigDecimal sp = BigDecimal.valueOf(item.getSalePrice()).setScale(rule.getPriceScale(), RoundingMode.HALF_EVEN);
                     logger.debug("\t inspect [{}-{}].", ++idx, item);
                     lockedItems.add(item.setExclusiveLock(true));
-                    rule.containsCountInc().sumOfContainsOriginalPriceInc(op).sumOfContainsSalePriceInc(sp)
-                            .sumOfSerialOriginalPriceInc(op).sumOfSerialSalePriceInc(sp);
+                    rule.containsCountInc().sumOfContainsRegularPriceInc(op).sumOfContainsSalePriceInc(sp)
+                            .sumOfSerialRegularPriceInc(op).sumOfSerialSalePriceInc(sp);
                     if (rule.isTriggered(item)) {
                         if (iterate(((IChainRule<T>) rule).getNext(), cartItems, bonuses, true)) {
                             lockedItems.clear();
@@ -190,7 +190,7 @@ public class Calculator {
                         }
                     }
                     if (item.isSerialLast()) {
-                        rule.resetSumOfSerialOriginalPrice();
+                        rule.resetSumOfSerialRegularPrice();
                         rule.resetSumOfSerialSalePrice();
                     }
                 }

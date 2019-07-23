@@ -46,7 +46,7 @@ public class CurrentItem implements IItem {
     }
 
     @Override
-    public double getOriginalPrice() {
+    public double getRegularPrice() {
         return 0;
     }
 

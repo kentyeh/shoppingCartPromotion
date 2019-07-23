@@ -49,8 +49,8 @@ public interface IItem<T> {
     /**
      * 原價
      *
-     * @return original price of item.
+     * @return regular price of item.
      */
-    public double getOriginalPrice();
+    public double getRegularPrice();
 
 }

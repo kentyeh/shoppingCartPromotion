@@ -28,7 +28,7 @@ public class TestBase {
         double sop = 0d, ssp = 0d;
         long sq = 0;
         for (IItem item : cartitems) {
-            sop += item.getOriginalPrice() * item.getQuantity();
+            sop += item.getRegularPrice() * item.getQuantity();
             ssp += item.getSalePrice() * item.getQuantity();
             sq += item.getQuantity();
         }
@@ -108,7 +108,7 @@ public class TestBase {
         StringBuilder sb = new StringBuilder(center(title, len));
         dashLine(sb.append("\n"), len)
                 .append("\n").append(left("identity", 10)).append(" ").append(left("description", 63))
-                .append(" ").append(right("OriPric", numLen)).append(" ").append(right("SalPrice", numLen + 1))
+                .append(" ").append(right("RegPric", numLen)).append(" ").append(right("SalPrice", numLen + 1))
                 .append(" ").append("quantity");
         dashLine(sb.append("\n"), len);
         double summary = 0;
@@ -117,7 +117,7 @@ public class TestBase {
             summary = summary + item.getSalePrice() * item.getQuantity();
             sb.append("\n").append(left(item.getIdentity().toString(), 10))
                     .append(" ").append(left(item.getProductDesc(), 63))
-                    .append(" ").append(right(item.getOriginalPrice(), numLen, 2))
+                    .append(" ").append(right(item.getRegularPrice(), numLen, 2))
                     .append(" ").append(right(item.getSalePrice(), numLen, 2))
                     .append(" x ").append(right(String.format("%,d", item.getQuantity()), 7));
         }
@@ -127,7 +127,7 @@ public class TestBase {
                 summary = summary + bonus.getSalePrice() * bonus.getQuantity();
                 sb.append("\n").append(left(bonus.as().getIdentity().toString(), 10))
                         .append(" ").append(left(limit(bonus.getRule().toString(), 30) + ":" + bonus.as().getProductDesc(), 63))
-                        .append(" ").append(right(bonus.as().getOriginalPrice(), numLen, 2))
+                        .append(" ").append(right(bonus.as().getRegularPrice(), numLen, 2))
                         .append(" ").append(right(bonus.as().getSalePrice(), numLen, 2))
                         .append(" x ").append(right(String.format("%,d", bonus.getQuantity()), numLen));
             }

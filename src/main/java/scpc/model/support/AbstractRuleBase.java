@@ -21,9 +21,9 @@ public abstract class AbstractRuleBase<T> implements IRule<T> {
 
     private int containsCount = 0;
     private int serialNum = 1;
-    private BigDecimal containsSumOfOriginalPrice = BigDecimal.ZERO;
+    private BigDecimal containsSumOfRegularPrice = BigDecimal.ZERO;
     private BigDecimal containsSumOfSalePrice = BigDecimal.ZERO;
-    private BigDecimal sumOfSerialOriginalPrice = BigDecimal.ZERO;
+    private BigDecimal sumOfSerialRegularPrice = BigDecimal.ZERO;
     private BigDecimal serialSumOfSalePrice = BigDecimal.ZERO;
     private IChainRule<T> previousRule = null;
     private String triggerFormula = "";
@@ -135,13 +135,13 @@ public abstract class AbstractRuleBase<T> implements IRule<T> {
     }
 
     /**
-     * @see IRule#sumOfContainsOriginalPriceInc(java.math.BigDecimal)
-     * @param originalPrice
+     * @see IRule#sumOfContainsRegularPriceInc(java.math.BigDecimal)
+     * @param regularPrice
      * @return
      */
     @Override
-    public IRule<T> sumOfContainsOriginalPriceInc(BigDecimal originalPrice) {
-        containsSumOfOriginalPrice = containsSumOfOriginalPrice.add(originalPrice);
+    public IRule<T> sumOfContainsRegularPriceInc(BigDecimal regularPrice) {
+        containsSumOfRegularPrice = containsSumOfRegularPrice.add(regularPrice);
         return this;
     }
 
@@ -157,12 +157,12 @@ public abstract class AbstractRuleBase<T> implements IRule<T> {
     }
 
     /**
-     * @see IRule#getSumOfContainsOriginalPrice()
+     * @see IRule#getSumOfContainsRegularPrice()
      * @return
      */
     @Override
-    public BigDecimal getSumOfContainsOriginalPrice() {
-        return containsSumOfOriginalPrice;
+    public BigDecimal getSumOfContainsRegularPrice() {
+        return containsSumOfRegularPrice;
     }
 
     /**
@@ -175,12 +175,12 @@ public abstract class AbstractRuleBase<T> implements IRule<T> {
     }
 
     /**
-     * @see IRule#getSumOfSerialOriginalPrice()
+     * @see IRule#getSumOfSerialRegularPrice()
      * @return
      */
     @Override
-    public BigDecimal getSumOfSerialOriginalPrice() {
-        return sumOfSerialOriginalPrice;
+    public BigDecimal getSumOfSerialRegularPrice() {
+        return sumOfSerialRegularPrice;
     }
 
     /**
@@ -203,13 +203,13 @@ public abstract class AbstractRuleBase<T> implements IRule<T> {
     }
 
     /**
-     * @see IRule#sumOfSerialOriginalPriceInc(java.math.BigDecimal)
+     * @see IRule#sumOfSerialRegularPriceInc(java.math.BigDecimal)
      * @param saleprice
      * @return
      */
     @Override
-    public IRule<T> sumOfSerialOriginalPriceInc(BigDecimal saleprice) {
-        this.sumOfSerialOriginalPrice = this.sumOfSerialOriginalPrice.add(saleprice.setScale(getPriceScale()));
+    public IRule<T> sumOfSerialRegularPriceInc(BigDecimal saleprice) {
+        this.sumOfSerialRegularPrice = this.sumOfSerialRegularPrice.add(saleprice.setScale(getPriceScale()));
         return this;
     }
 
@@ -225,12 +225,12 @@ public abstract class AbstractRuleBase<T> implements IRule<T> {
     }
 
     /**
-     * @see IRule#resetSumOfSerialOriginalPrice()
+     * @see IRule#resetSumOfSerialRegularPrice()
      * @return
      */
     @Override
-    public IRule<T> resetSumOfSerialOriginalPrice() {
-        this.sumOfSerialOriginalPrice = BigDecimal.ZERO;
+    public IRule<T> resetSumOfSerialRegularPrice() {
+        this.sumOfSerialRegularPrice = BigDecimal.ZERO;
         return this;
     }
 
@@ -246,9 +246,9 @@ public abstract class AbstractRuleBase<T> implements IRule<T> {
 
     @Override
     public void resetSumOfPrice() {
-        containsSumOfOriginalPrice = BigDecimal.ZERO;
+        containsSumOfRegularPrice = BigDecimal.ZERO;
         containsSumOfSalePrice = BigDecimal.ZERO;
-        sumOfSerialOriginalPrice = BigDecimal.ZERO;
+        sumOfSerialRegularPrice = BigDecimal.ZERO;
         serialSumOfSalePrice = BigDecimal.ZERO;
     }
 

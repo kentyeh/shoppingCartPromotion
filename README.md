@@ -35,7 +35,7 @@ Represent any one put in shopping cart, includes products , bonuses or discounts
 ### SingleItem ###
 The first procedure is to spread items into SingleItems in the cart.
 
-Item                        |Original Price | Sale Price  |      | Quantity
+Item                        |Regular Price | Sale Price  |      | Quantity
 ------------------------ | ---------:| ---------:|:---:| ----:
 Stapler                     | $15.99 | $10.59 | x |1
 Liquid Paper                | $8.25  | $6.98  | x |2
@@ -64,7 +64,7 @@ IRule walks through all SingleItems, filters them, find triggered, collection st
 #### Filters Items ####
 Suppose we have a promotion rule for pens. Then we have to find out those contains items and collection statistics (the capital name in the parentheses represents the variable) when iterating.
 
-Single Item                 | Contains Count<br/>(N) | serial Number<br/>(NN)| Original Price<br/>(OP)| Sale Price<br/>(SP) |serialNum<br/>(NN) | Sum Of OP<br/>(SCOP) | Sum Of SP<br/>(SCSP)| Sum of Serial OP<br/>(SSOP) | Sum of Serial SP<br/>(SSSP)
+Single Item                 | Contains Count<br/>(N) | serial Number<br/>(NN)| Regular Price<br/>(OP)| Sale Price<br/>(SP) |serialNum<br/>(NN) | Sum Of OP<br/>(SCOP) | Sum Of SP<br/>(SCSP)| Sum of Serial OP<br/>(SSOP) | Sum of Serial SP<br/>(SSSP)
 ------------------------ | ---: | ---: | ---: | ---: | ---:  | ---:  | ---: | ---: | ---:
 BrightPink Fabric Marker Pen | 1 | 1 | $8.8  | $7.93 | 1 | $8.8   | $7.93  | $8.8   | $7.93
 BrightPink Fabric Marker Pen | 2 | 2 | $8.8  | $7.93 | 2 | $17.6  | $15.86 | $17.6  | $15.86
@@ -189,10 +189,10 @@ Then we get 80 cents discount.
 
 It always needs to set ```isLastQuantityOnly==true``` when using "SUM OF XXX PRICE" variables.
 
-### Original Price Discount ###
+### Regular Price Discount ###
 It seems to me that this promotion is not so instinctive, but in Taiwan, many retail like to play this trick.
 
-Promotion rule : **Buy 2x pens get Original Price 30% discount** 
+Promotion rule : **Buy 2x pens get Regular Price 30% discount** 
 
 ```java
 isLastQuantityOnly==true
@@ -209,7 +209,7 @@ triggerFormula | Bonus |quantityFormula
 ----- | --- | --- 
 NN%2==0 | CurrentItem | 1
 
-Another case is **"Buy 2 same pens get Original Price 30% discount"** 
+Another case is **"Buy 2 same pens get Regular Price 30% discount"** 
 
 ```java
 ILeafRule.isLastQuantityOnly() == flase
@@ -265,7 +265,7 @@ PPSCSP also same as PSCSP, it represents the SCSP of stapler rule.
 <dependency>
     <groupId>com.github.kentyeh</groupId>
     <artifactId>scpc</artifactId>
-    <version>1.1</version>
+    <version>1.2</version>
 </dependency>
 ```
 

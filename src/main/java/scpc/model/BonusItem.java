@@ -114,12 +114,12 @@ public class BonusItem<T> implements IItem<T> {
     }
 
     /**
-     * @see IItem#getOriginalPrice()
+     * @see IItem#getRegularPrice()
      * @return
      */
     @Override
-    public double getOriginalPrice() {
-        return item.getOriginalPrice();
+    public double getRegularPrice() {
+        return item.getRegularPrice();
     }
 
     @Override

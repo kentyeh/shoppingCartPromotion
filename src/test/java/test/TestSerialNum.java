@@ -8,7 +8,7 @@ import java.util.Set;
 import javax.script.ScriptException;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.hamcrest.core.IsCollectionContaining.hasItem;
+import static org.hamcrest.core.IsIterableContaining.hasItem;
 import static org.hamcrest.core.IsEqual.equalTo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -125,7 +125,7 @@ public class TestSerialNum extends TestBase {
     }
 
     @Parameters(SHOW_CART)
-    public void test2SamePensGetOriginalPrice30PctDiscount(@Optional String showCart) throws ScriptException {
+    public void test2SamePensGetRegularPrice30PctDiscount(@Optional String showCart) throws ScriptException {
         CartItem purplePen = new WaterSolublePurpleFabricMarkerPen().buy(5);
         CartItem briPinkPen = new WaterSolubleBrightPinkFabricMarkerPen().buy(5);
         Set<IItem<CartItem>> cartItems = new HashSet<>();
@@ -134,7 +134,7 @@ public class TestSerialNum extends TestBase {
         cartItems.add(new LiquidPaper().buy(3));
         cartItems.add(new Stapler().buy(3));
         List<IRule<CartItem>> rules = new ArrayList();
-        rules.add(new BaseRule("2 Same Pens Get OriPrice 30% discount!", BaseRule.SPEL_EVAL, "NN%2==0",
+        rules.add(new BaseRule("2 Same Pens Get RegPrice 30% discount!", BaseRule.SPEL_EVAL, "NN%2==0",
                 "(SP*10-OP*7)*2", 0,
                 WaterSolublePurpleFabricMarkerPen.CODE, WaterSolubleBrightPinkFabricMarkerPen.CODE) {
                     @Override
@@ -145,11 +145,11 @@ public class TestSerialNum extends TestBase {
         Collection<BonusItem<CartItem>> bonuses = Calculator.calcBonus(rules, cartItems);
         long saving = Math.round(Math.floor(
                 (briPinkPen.getSalePrice() + purplePen.getSalePrice()) * 4 * 10
-                - (briPinkPen.getOriginalPrice() + purplePen.getOriginalPrice()) * 4 * 7));
+                - (briPinkPen.getRegularPrice() + purplePen.getRegularPrice()) * 4 * 7));
         assertThat(String.format("Should save %,d cents", saving),
                 bonuses.iterator().next().getQuantity(), is(equalTo(saving)));
         if ("true".equalsIgnoreCase(showCart)) {
-            logger.info("\n{}", showCart("Test2ndPenGetOriginalPrice30PctDiscount", cartItems, bonuses));
+            logger.info("\n{}", showCart("Test2ndPenGetRegularPrice30PctDiscount", cartItems, bonuses));
         }
         rules.clear();
         rules.add(new BaseRule("2nd Pen Get SalePrice 30% discount!", BaseRule.SPEL_EVAL, "NN%2==0",

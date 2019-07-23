@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.kentyeh</groupId>
     <artifactId>scpc</artifactId>
-    <version>1.1</version>
+    <version>1.2</version>
     <packaging>jar</packaging>
     <name>Shopping Cart Promotion Calculator</name>
     <url>https://github.com/kentyeh/shoppingCartPromotion</url>
@@ -14,7 +14,7 @@
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
         <maven.compiler.optimize>true</maven.compiler.optimize>
-        <log4j.version>2.11.2</log4j.version>
+        <log4j.version>2.12.0</log4j.version>
     </properties>
     
     <licenses>
@@ -73,7 +73,7 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context-support</artifactId>
-            <version>4.3.23.RELEASE</version>
+            <version>4.3.24.RELEASE</version>
             <scope>compile</scope>
             <optional>true</optional>
         </dependency>
@@ -117,7 +117,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-source-plugin</artifactId>
-                        <version>3.0.1</version>
+                        <version>3.1.0</version>
                         <executions>
                             <execution>
                                 <phase>package</phase>
@@ -131,7 +131,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>3.1.0</version>
+                        <version>3.1.1</version>
                         <executions>
                             <execution>
                                 <phase>package</phase>
@@ -214,12 +214,13 @@
                     <target>${maven.compiler.target}</target>
                     <showDeprecation>true</showDeprecation>
                     <optimize>true</optimize>
+                    <compilerArgument>-Xlint:unchecked</compilerArgument>
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.1.0</version>
+                <version>3.1.1</version>
                 <configuration>
                     <aggregate>true</aggregate>
                     <minmemory>128m</minmemory>

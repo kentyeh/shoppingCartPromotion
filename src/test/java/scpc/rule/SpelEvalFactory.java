@@ -29,7 +29,7 @@ public class SpelEvalFactory extends SpelEvalHelper {
     }
 
     @Override
-    public String getVarOriginalPrice() {
+    public String getVarRegularPrice() {
         return "OP";
     }
 
@@ -44,7 +44,7 @@ public class SpelEvalFactory extends SpelEvalHelper {
     }
 
     @Override
-    public String getVarSumOfContainsOriginalPrice() {
+    public String getVarSumOfContainsRegularPrice() {
         return "SCOP";
     }
 
@@ -54,7 +54,7 @@ public class SpelEvalFactory extends SpelEvalHelper {
     }
 
     @Override
-    public String getVarSumOfSerialOriginalPrice() {
+    public String getVarSumOfSerialRegularPrice() {
         return "SSOP";
     }
 

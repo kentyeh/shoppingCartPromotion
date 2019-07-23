@@ -54,22 +54,22 @@ public abstract class EvalHelper<T> {
         while (prule != null) {
             rpfx += getPreviousRulePrefix();
             bindVarValue(String.format("%s%s", rpfx, getVarContainsCount()), prule.getContainsCount());
-            bindVarValue(String.format("%s%s", rpfx, getVarSumOfContainsOriginalPrice()), prule.getSumOfContainsOriginalPrice().doubleValue());
+            bindVarValue(String.format("%s%s", rpfx, getVarSumOfContainsRegularPrice()), prule.getSumOfContainsRegularPrice().doubleValue());
             bindVarValue(String.format("%s%s", rpfx, getVarSumOfContainsSalePrice()), prule.getSumOfContainsSalePrice().doubleValue());
-            bindVarValue(String.format("%s%s", rpfx, getVarSumOfSerialOriginalPrice()), prule.getSumOfSerialOriginalPrice().doubleValue());
+            bindVarValue(String.format("%s%s", rpfx, getVarSumOfSerialRegularPrice()), prule.getSumOfSerialRegularPrice().doubleValue());
             bindVarValue(String.format("%s%s", rpfx, getVarSumOfSerialSalePrice()), prule.getSumOfSerialSalePrice().doubleValue());
             prule = prule.getPrevious();
         }
         if (item != null) {
             bindVarValue(String.format("%s", getVarSalePrice()), item.getSalePrice());
-            bindVarValue(String.format("%s", getVarOriginalPrice()), item.getOriginalPrice());
+            bindVarValue(String.format("%s", getVarRegularPrice()), item.getRegularPrice());
         }
         if (rule != null) {
             bindVarValue(String.format("%s", getVarContainsCount()), rule.getContainsCount());
             bindVarValue(String.format("%s", getVarSerialNum()), rule.getSerialNum());
-            bindVarValue(String.format("%s", getVarSumOfContainsOriginalPrice()), rule.getSumOfContainsOriginalPrice().doubleValue());
+            bindVarValue(String.format("%s", getVarSumOfContainsRegularPrice()), rule.getSumOfContainsRegularPrice().doubleValue());
             bindVarValue(String.format("%s", getVarSumOfContainsSalePrice()), rule.getSumOfContainsSalePrice().doubleValue());
-            bindVarValue(String.format("%s", getVarSumOfSerialOriginalPrice()), rule.getSumOfSerialOriginalPrice().doubleValue());
+            bindVarValue(String.format("%s", getVarSumOfSerialRegularPrice()), rule.getSumOfSerialRegularPrice().doubleValue());
             bindVarValue(String.format("%s", getVarSumOfSerialSalePrice()), rule.getSumOfSerialSalePrice().doubleValue());
         }
         return this;
@@ -84,12 +84,12 @@ public abstract class EvalHelper<T> {
      */
     public void validateJSVariable() throws ScriptException {
         validJSVarName(getVarSalePrice());
-        validJSVarName(getVarOriginalPrice());
+        validJSVarName(getVarRegularPrice());
         validJSVarName(getVarSerialNum());
         validJSVarName(getVarContainsCount());
-        validJSVarName(getVarSumOfContainsOriginalPrice());
+        validJSVarName(getVarSumOfContainsRegularPrice());
         validJSVarName(getVarSumOfContainsSalePrice());
-        validJSVarName(getVarSumOfSerialOriginalPrice());
+        validJSVarName(getVarSumOfSerialRegularPrice());
         validJSVarName(getVarSumOfSerialSalePrice());
     }
 
@@ -111,12 +111,12 @@ public abstract class EvalHelper<T> {
     public abstract String getVarSalePrice();
 
     /**
-     * Variable name of original price.
+     * Variable name of regular price.
      * <br>原價的變數名稱
      *
      * @return
      */
-    public abstract String getVarOriginalPrice();
+    public abstract String getVarRegularPrice();
 
     /**
      * Variable name of which represent the sequence of the same applicable
@@ -137,13 +137,13 @@ public abstract class EvalHelper<T> {
     public abstract String getVarContainsCount();
 
     /**
-     * Variable name of which represent the summary original price of applicable
+     * Variable name of which represent the summary regular price of applicable
      * items.
      * <br>符合此規則的品項原價小計的變數
      *
      * @return
      */
-    public abstract String getVarSumOfContainsOriginalPrice();
+    public abstract String getVarSumOfContainsRegularPrice();
 
     /**
      * Variable name of which represent the summary sale price of applicable
@@ -155,13 +155,13 @@ public abstract class EvalHelper<T> {
     public abstract String getVarSumOfContainsSalePrice();
 
     /**
-     * Variable name of which represent the summary oringal price of the same
+     * Variable name of which represent the summary regular price of the same
      * applicable items.
      * <br>符合此規則的同品項原價小計的變數
      *
      * @return
      */
-    public abstract String getVarSumOfSerialOriginalPrice();
+    public abstract String getVarSumOfSerialRegularPrice();
 
     /**
      * Variable name of which represent the summary sale price of the same

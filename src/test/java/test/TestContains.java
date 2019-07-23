@@ -27,7 +27,7 @@ import scpc.rule.BaseRule;
 import static test.TestBase.SHOW_CART;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.hamcrest.core.IsCollectionContaining.hasItem;
+import static org.hamcrest.core.IsIterableContaining.hasItem;
 
 /**
  *
@@ -145,7 +145,7 @@ public class TestContains extends TestBase {
         cartItems.add(new LiquidPaper().buy(3));
         cartItems.add(new Stapler().buy(3));
         List<IRule<CartItem>> rules = new ArrayList();
-        rules.add(new BaseRule("2 Pens Get OriPrice 30% discount!", BaseRule.SPEL_EVAL, true, true, "N%2==0",
+        rules.add(new BaseRule("2 Pens Get RegPrice 30% discount!", BaseRule.SPEL_EVAL, true, true, "N%2==0",
                 "(SCSP*10-SCOP*7)", 0,
                 WaterSolublePurpleFabricMarkerPen.CODE, WaterSolubleBrightPinkFabricMarkerPen.CODE) {
             @Override
@@ -156,11 +156,11 @@ public class TestContains extends TestBase {
         Collection<BonusItem<CartItem>> bonuses = Calculator.calcBonus(rules, cartItems);
         long saving = Math.round(Math.floor(
                 (briPinkPen.getSalePrice() + purplePen.getSalePrice()) * 3 * 10
-                - (briPinkPen.getOriginalPrice() + purplePen.getOriginalPrice()) * 3 * 7));
+                - (briPinkPen.getRegularPrice() + purplePen.getRegularPrice()) * 3 * 7));
         assertThat(String.format("Should save %,d cents", saving),
                 bonuses.iterator().next().getQuantity(), is(equalTo(saving)));
         if ("true".equalsIgnoreCase(showCart)) {
-            logger.info("\n{}", showCart("Test2PensGetOriginalPrice30PctDiscount", cartItems, bonuses));
+            logger.info("\n{}", showCart("Test2PensGetRegularPrice30PctDiscount", cartItems, bonuses));
         }
         rules.clear();
         rules.add(new BaseRule("2 Pens Get SalePrice 30% discount!", BaseRule.SPEL_EVAL, true, true, "N%2==0",
@@ -181,7 +181,7 @@ public class TestContains extends TestBase {
     }
 
     @Parameters(SHOW_CART)
-    public void testBuy1Get3PctSalePriceAndBuy10Get3PctOriginPricePctDiscount(@Optional String showCart) throws ScriptException {
+    public void testBuy1Get3PctSalePriceAndBuy10Get3PctRegularPricePctDiscount(@Optional String showCart) throws ScriptException {
         CartItem purplePen = new WaterSolublePurpleFabricMarkerPen().buy(1);
         CartItem briPinkPen = new WaterSolubleBrightPinkFabricMarkerPen().buy(1);
         Set<IItem<CartItem>> cartItems = new HashSet<>();
@@ -203,12 +203,12 @@ public class TestContains extends TestBase {
         assertThat(String.format("Should save %,d cents", saving),
                 bonuses.iterator().next().getQuantity(), is(equalTo(saving)));
         if ("true".equalsIgnoreCase(showCart)) {
-            logger.info("\n{}", showCart("TestBuy1Get3PctSalePriceAndBuy10Get3PctOriginPricePctDiscount", cartItems, bonuses));
+            logger.info("\n{}", showCart("TestBuy1Get3PctSalePriceAndBuy10Get3PctRegularPricePctDiscount", cartItems, bonuses));
         }
         purplePen = purplePen.buy(5);
         briPinkPen = briPinkPen.buy(5);
         rules.clear();
-        rules.add(new BaseRule("10 Pens Get OriPrice 30% discount!", BaseRule.JS_EVAL, true, true, "true",
+        rules.add(new BaseRule("10 Pens Get RegPrice 30% discount!", BaseRule.JS_EVAL, true, true, "true",
                 "(N<10?SCSP:SCOP)*3", 0,
                 WaterSolublePurpleFabricMarkerPen.CODE, WaterSolubleBrightPinkFabricMarkerPen.CODE) {
             @Override
@@ -217,11 +217,11 @@ public class TestContains extends TestBase {
             }
         });
         bonuses = Calculator.calcBonus(rules, cartItems);
-        saving = Math.round(Math.floor((briPinkPen.getOriginalPrice() + purplePen.getOriginalPrice()) * 5 * 3));
+        saving = Math.round(Math.floor((briPinkPen.getRegularPrice() + purplePen.getRegularPrice()) * 5 * 3));
         assertThat(String.format("Should save %,d cents", saving),
                 bonuses.iterator().next().getQuantity(), is(equalTo(saving)));
         if ("true".equalsIgnoreCase(showCart)) {
-            logger.info("\n{}", showCart("TestBuy1Get3PctSalePriceAndBuy10Get3PctOriginPricePctDiscount", cartItems, bonuses));
+            logger.info("\n{}", showCart("TestBuy1Get3PctSalePriceAndBuy10Get3PctRegularPricePctDiscount", cartItems, bonuses));
         }
     }
 

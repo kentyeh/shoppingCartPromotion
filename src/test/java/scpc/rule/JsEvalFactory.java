@@ -30,7 +30,7 @@ public class JsEvalFactory extends JsEvalHelper<CartItem> {
     }
 
     @Override
-    public String getVarOriginalPrice() {
+    public String getVarRegularPrice() {
         return "OP";
     }
 
@@ -45,7 +45,7 @@ public class JsEvalFactory extends JsEvalHelper<CartItem> {
     }
 
     @Override
-    public String getVarSumOfContainsOriginalPrice() {
+    public String getVarSumOfContainsRegularPrice() {
         return "SCOP";
     }
 
@@ -55,7 +55,7 @@ public class JsEvalFactory extends JsEvalHelper<CartItem> {
     }
 
     @Override
-    public String getVarSumOfSerialOriginalPrice() {
+    public String getVarSumOfSerialRegularPrice() {
         return "SSOP";
     }
 

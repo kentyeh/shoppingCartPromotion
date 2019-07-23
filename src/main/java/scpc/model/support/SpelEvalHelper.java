@@ -103,16 +103,16 @@ public abstract class SpelEvalHelper<T> extends EvalHelper<T> {
             if (null != replacers.put(varname, entry.getValue() + ".containsCount")) {
                 throw new ScriptException(String.format(" 2.Variable[%s] already set!", varname));
             }
-            varname = validJSVarName(entry.getKey() + getVarSumOfContainsOriginalPrice());
-            if (null != replacers.put(varname, entry.getValue() + ".sumOfContainsOriginalPrice")) {
+            varname = validJSVarName(entry.getKey() + getVarSumOfContainsRegularPrice());
+            if (null != replacers.put(varname, entry.getValue() + ".sumOfContainsRegularPrice")) {
                 throw new ScriptException(String.format(" 3.Variable[%s] already set!", varname));
             }
             varname = validJSVarName(entry.getKey() + getVarSumOfContainsSalePrice());
             if (null != replacers.put(varname, entry.getValue() + ".sumOfContainsSalePrice")) {
                 throw new ScriptException(String.format(" 4.Variable[%s] already set!", varname));
             }
-            varname = validJSVarName(entry.getKey() + getVarSumOfSerialOriginalPrice());
-            if (null != replacers.put(varname, entry.getValue() + ".sumOfSerialOriginalPrice")) {
+            varname = validJSVarName(entry.getKey() + getVarSumOfSerialRegularPrice());
+            if (null != replacers.put(varname, entry.getValue() + ".sumOfSerialRegularPrice")) {
                 throw new ScriptException(String.format(" 5.Variable[%s] already set!", varname));
             }
             varname = validJSVarName(entry.getKey() + getVarSumOfSerialSalePrice());
@@ -129,16 +129,16 @@ public abstract class SpelEvalHelper<T> extends EvalHelper<T> {
             if (null != replacers.put(varname, "rule.serialNum")) {
                 throw new ScriptException(String.format(" 9.Variable[%s] already set!", varname));
             }
-            varname = validJSVarName(getVarSumOfContainsOriginalPrice());
-            if (null != replacers.put(varname, "rule.sumOfContainsOriginalPrice")) {
+            varname = validJSVarName(getVarSumOfContainsRegularPrice());
+            if (null != replacers.put(varname, "rule.sumOfContainsRegularPrice")) {
                 throw new ScriptException(String.format("10.Variable[%s] already set!", varname));
             }
             varname = validJSVarName(getVarSumOfContainsSalePrice());
             if (null != replacers.put(varname, "rule.sumOfContainsSalePrice")) {
                 throw new ScriptException(String.format("11.Variable[%s] already set!", varname));
             }
-            varname = validJSVarName(getVarSumOfSerialOriginalPrice());
-            if (null != replacers.put(varname, "rule.sumOfSerialOriginalPrice")) {
+            varname = validJSVarName(getVarSumOfSerialRegularPrice());
+            if (null != replacers.put(varname, "rule.sumOfSerialRegularPrice")) {
                 throw new ScriptException(String.format("12,Variable[%s] already set!", varname));
             }
             varname = validJSVarName(getVarSumOfSerialSalePrice());
@@ -151,8 +151,8 @@ public abstract class SpelEvalHelper<T> extends EvalHelper<T> {
             if (null != replacers.put(varname, "item.salePrice")) {
                 throw new ScriptException(String.format("14.Variable[%s] already set!", varname));
             }
-            varname = validJSVarName(getVarOriginalPrice());
-            if (null != replacers.put(varname, "item.originalPrice")) {
+            varname = validJSVarName(getVarRegularPrice());
+            if (null != replacers.put(varname, "item.regularPrice")) {
                 throw new ScriptException(String.format("15.Variable[%s] already set!", varname));
             }
         }

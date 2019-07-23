@@ -108,20 +108,20 @@ public interface IRule<T> {
     public BigDecimal getSumOfContainsSalePrice();
 
     /**
-     * Increase the summary original price of applicable items.
+     * Increase the summary regular price of applicable items.
      * <br>增加符合此規則的品項原價小計
      *
      * @param salePrice
      * @return
      */
-    public IRule<T> sumOfContainsOriginalPriceInc(BigDecimal salePrice);
+    public IRule<T> sumOfContainsRegularPriceInc(BigDecimal salePrice);
 
     /**
      * 符合此規則的品項原價小計
      *
-     * @return The summary original price of applicable items.
+     * @return The summary regular price of applicable items.
      */
-    public BigDecimal getSumOfContainsOriginalPrice();
+    public BigDecimal getSumOfContainsRegularPrice();
 
     /**
      * Increase the summary sale price of the same applicable items.
@@ -147,27 +147,27 @@ public interface IRule<T> {
     public IRule<T> resetSumOfSerialSalePrice();
 
     /**
-     * Increase the summary oringal price of the same applicable items.
+     * Increase the summary regular price of the same applicable items.
      * <br>增加符合此規則的同品項原價小計
      *
-     * @param oriprice original price
+     * @param regPrice regular price
      * @return this rule
      */
-    public IRule<T> sumOfSerialOriginalPriceInc(BigDecimal oriprice);
+    public IRule<T> sumOfSerialRegularPriceInc(BigDecimal regPrice);
 
     /**
      * 符合此規則的同品項原價小計
      *
-     * @return The summary oringal price of the same applicable items.
+     * @return The summary regular price of the same applicable items.
      */
-    public BigDecimal getSumOfSerialOriginalPrice();
+    public BigDecimal getSumOfSerialRegularPrice();
 
     /**
-     * Reset the summary original price of the same applicable items.
+     * Reset the summary regular price of the same applicable items.
      *
      * @return this rule
      */
-    public IRule<T> resetSumOfSerialOriginalPrice();
+    public IRule<T> resetSumOfSerialRegularPrice();
 
     /**
      * Reset sumary price to zero <br>
